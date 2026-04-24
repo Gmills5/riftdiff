@@ -7,8 +7,8 @@ export async function GET(request: Request) {
   const puuid = searchParams.get("puuid");
 
   if (!puuid) {
-    return NextResponse.json({ test: "rank route is updated" });
-  }
+  return NextResponse.json({ error: "Missing puuid" }, { status: 400 });
+    }
 
   const summonerRes = await fetch(
     `https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/${puuid}`,
